@@ -7,16 +7,23 @@ class maven (
   $download_url     = $maven::params::download_url,
   $install_path     = $maven::params::install_path,
   $java_binary      = $maven::params::install_path::java_binary,
+  $m2_home          = "${install_path}/${package_name}-${package_version}"
 
 ) inherits maven::params {
 
-  archive { $archive_name:
+  archive { $package_file :
     path         => "/tmp/${package_file}",
     source       => "${download_url}",
     extract      => true,
     extract_path => $install_path,
-    creates      => "${install_path}/${package_name}-${package_version}",
+    creates      => $m2_home,
     cleanup      => true,
+  }
+
+  file { "${install_path}/mvn" :
+    ensure      => link,
+    target      => $m2_home,
+    require     => Archive[$package_file],
   }
 
 }
