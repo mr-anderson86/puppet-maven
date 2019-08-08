@@ -2,9 +2,9 @@
   "name": "puppet-maven",
   "version": "0.1.0",
   "author": "mr-anderson86",
-  "summary": "",
+  "summary": "Installs Maven 3.6.1 and JDK (devel) 1.8",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/mr-anderson86/puppet-maven",
   "dependencies": [
 
   ],
