@@ -10,4 +10,13 @@ class maven (
 
 ) inherits maven::params {
 
+  archive { $archive_name:
+    path         => "/tmp/${package_file}",
+    source       => "${download_url}",
+    extract      => true,
+    extract_path => $install_path,
+    creates      => "${install_path}/${package_name}-${package_version}",
+    cleanup      => true,
+  }
+
 }
