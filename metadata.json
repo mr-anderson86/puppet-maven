@@ -6,7 +6,10 @@
   "license": "Apache-2.0",
   "source": "https://github.com/mr-anderson86/puppet-maven",
   "dependencies": [
-
+    {
+      "name": "puppet-archive",
+      "version_range": ">= 4.1.0"
+    }
   ],
   "operatingsystem_support": [
     {
