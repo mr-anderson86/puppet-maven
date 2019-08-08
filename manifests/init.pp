@@ -11,6 +11,10 @@ class maven (
 
 ) inherits maven::params {
 
+  package { $java_binary : 
+    ensure       => present,
+  }
+
   archive { $package_file :
     path         => "/tmp/${package_file}",
     source       => "${download_url}",
