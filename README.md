@@ -38,7 +38,7 @@ include maven
 ### Usage with params
 ```puppet
 class { 'maven':
-    package_version     => '3.6.0',
-    java_binary         => 'java-1.8.0-openjdk-devel'
+    package_version  => '3.6.0',
+    java_binary      => 'java-1.8.0-openjdk-devel'
 }
 ```
