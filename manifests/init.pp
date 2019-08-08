@@ -7,7 +7,7 @@ class maven (
   $download_url     = $maven::params::download_url,
   $install_path     = $maven::params::install_path,
   $java_binary      = $maven::params::install_path::java_binary,
-  $m2_home          = "${install_path}/${package_name}-${package_version}"
+  $maven_full_path  = "${install_path}/${package_name}-${package_version}"
 
 ) inherits maven::params {
 
@@ -20,14 +20,22 @@ class maven (
     source       => "${download_url}",
     extract      => true,
     extract_path => $install_path,
-    creates      => $m2_home,
+    creates      => $maven_full_path,
     cleanup      => true,
   }
 
-  file { "${install_path}/mvn" :
+  file { "${install_path}/maven" :
     ensure      => link,
-    target      => $m2_home,
+    target      => $maven_full_path,
     require     => Archive[$package_file],
   }
 
+  file { '/etc/profile.d/maven.sh' :
+    ensure      => file,
+    source      => "puppet://modules/maven/maven.sh",
+    require     => [
+                    File['/etc/profile.d/maven.sh'],
+                    Package[$java_binary],
+                   ],
+    }
 }
