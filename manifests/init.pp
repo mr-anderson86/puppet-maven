@@ -34,8 +34,8 @@ class maven (
     ensure      => file,
     source      => "puppet://modules/maven/maven.sh",
     require     => [
-                    File['/etc/profile.d/maven.sh'],
-                    Package[$java_binary],
-                   ],
-    }
+      File['/etc/profile.d/maven.sh'],
+      Package[$java_binary],
+    ],
+  }
 }
